@@ -1,0 +1,96 @@
+How to run JS code
+JS is run on the browser. with NodeJS u can run in on a server/ your machine
+Two ways you can have js run in the browser:
+- 1: have your js inside the html file using <script> js code here </script>
+- 2: haver your js outside the html file but link to it in an html file using <script src="jsFileLocation"></script>.
+
+You can put the <script> tag in the head and body. often times u put script in the head for function declarations.
+
+console.log(); allows you to output to the console (in the browser inspector)
+alert(); allows you to alert a value;
+________________________________________________
+________________________________________________
+Variables
+    3 ways to declare variables:
+    1: var: variables that can change 
+    2: let: same as var but better in ways not yet discussed
+    3: const: variables that do not change
+
+    but don't use var anymore. instead use let and const.
+
+    let message;
+    message = "lol";
+
+    or 
+    let message = "lol";
+
+    can declare multiple variables in one line:
+    let message = "lol", text = "hi", myNum = 69;
+    which is the same as:
+        let message = "lol", 
+        text = "hi", 
+        myNum = 69;
+    and this where the comma is in the new line.
+        let message = "lol" 
+        , text = "hi" 
+        , myNum = 69;
+
+    Variable naming:
+        1. var name can only contain letters, numbers, and the symbols $ and _ 
+        2. var name cannot start with a digit.
+        3. const vars should have uppercase names if hardcoded. otherwise keep them lowercase. 
+            eg: const MY_VAR = 69;
+                vs 
+                let aVar = 100;
+                const myOtherVar = MY_VAR*aVar; /*this is not truly constant since myOtherVar will change as long as aVar changes*/
+        4. var names should describe the value they hold
+
+Numbers
+in JS, there is only one number datatype. it can be written with or without decimals. (actually there is also BigInt which deals with very very big numbers but we will not use that any time soon.)
+tho at times, floating-point arithmetic does not yield the expected result.
+
+Also integer numbers (number with no decimal or exponent notation) are accurate up to 15 digits
+
+JS uses + to concatenate strings. thus int + string = string.
+since + for both strings and ints has the same priority, it adds/concatenates from left to right.
+    10 + 20 + "hi" ==> 30hi
+    and 
+    "hi" + 10 + 20 ==> hi1020 and not hi30.
+
+in JS, strings can be used to do arithmetic operations (other than +). the result is int.
+eg: "10"-"9" => 1
+    "10"/2==> 5
+    since result is int, can do ("10"- 9)+2 ==> 3
+if the string is a nonDigit, it will result in NaN (Not a Number). so "apple" + 20 ==> NaN 
+can use isNaN() to see if a string is NaN.
+NaN is a value. in fact it is a number. do "typeof NaN" to see its type. a mathematical operation with NaN results in NaN. eg, NaN / 39 ==> NaN
+and a string + NaN will just concatenate. so NaN + "2" ==> NaN2 
+
+Infinity
+Infinity (or -Infinity) is the value JavaScript will return if you calculate a number outside the largest possible number
+Division by 0 results in infinity
+typeof Infinity ==> number
+
+
+if a number starts with 0x JS interprets it as Hexadecimal
+
+Never write a number with a leading zero (like 07).
+Some JavaScript versions interpret numbers as octal if they are written with a leading zero.
+ By default, JavaScript displays numbers as base 10 decimals.
+
+But you can use the toString() method to output numbers from base 2 to base 36.
+
+Hexadecimal is base 16. Decimal is base 10. Octal is base 8. Binary is base 2.
+
+SOME USEFUL NUMBER METHODS. MORE METHODS HERE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
+METHODS                 DESCRIPTION
+myNum.toFixed(x)               rounds myNum to a x decimal places
+Number("69")                   changes a string-number/boolean into a number  
++"69"                          changes a string-number/boolean into a number
+== vs === (and != and !==)in JS:
+== compares if two values are the same. returns true for 11 == "11"
+=== compares if two values are the same AND have the same data type. returns false for 11 === "11" since int is different from a string.
+
+it is important to note that unary operators are higher than binary operators.
+
+increment/decrement and /= and *= only work on variables and not values like 5++. 

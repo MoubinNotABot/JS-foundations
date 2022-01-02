@@ -1,0 +1,211 @@
+Data types
+- There are 8 basic data types in JS
+    1. Number
+    2. BitInt
+    3. String
+    4. Boolean
+    5. The "null" value 
+    6. The "undefined" value 
+    7. Object 
+    8. Symbol
+
+1. Number:
+    - repersents both integers and floating point numbers
+    - Infinity, -Infinity, and NaN are "special number values"
+        - Infinity and -Infinity repersent the mathematical Infinity. It is a value that is great than any number.
+            - division by zero gets you infinity
+            - or you can just do alert(Infinity); to get Infinity as a value.
+        - NaN represents computational error of doing arethmatics with data types that do not evaluate into a number.
+            - eg: "lol" + 7 ==> NaN
+            - any mathematical operation with NaN and a number results in NaN
+2. BigInt: 
+    - In JS, the Number data type cannot represent integer values lager than 2^53-1 or less than -(2^53-1). 
+    - so BigInt allows you to represent numbers great than teh Number data type
+    - a BigInt is created by adding the letter 'n' to the end of an INTEGER (not floating point numbers). eg: 12312873918739128739184798374n and 1n+2n ==> 3n
+3. Strings:
+    - in JS strings can be surrounded by "" or '' or ``
+    - "" and '' are the same. so no char type. 
+    - `` allows us to embed variables and expressions into a string by wrapping them in ${}
+        - eg: `my value is: ${69 + 420}` ==> my value is: 489
+4. Boolean:
+    - true or false.
+    - JS returns a Boolean in comparisons and logical operations (|| && !)
+5. The "null" value:
+    - the "null" value does not belong to any datatypes descriped above. so it is its own data type where it is the only value in that data type.
+    - null means nothing, empty, or value unknown. eg: let age=null; age is unknown.
+6. The "undefined" value:
+    - just like null it is a value and its own datatype
+    - undefined means "var declared but value not assigned". eg: let age; console.log(age) ==> undefined since there is no value assigned to it.
+    - can also just do, let age = undefined; and u get the same result as let age; BUT! don't do that. instead use null to assign a variable an empty value.
+7. Objects:
+    - objects are used to store collection of data and more complex entities.
+    - all the other data types are called "primitive". primitive data type is a data type that is not an object and has no methods.
+8. Symbol:
+    - the symbol data type is used to create unique identifiers for objects. 
+
+- don't worry too much about objects and symbols rn. you will learn them later.
+- since variables in JS do not have a type during declaration, you can use the same variable for different values of different types
+- use the typeof operator to see the type of an argument. eg: typeof 10n; ==> BigInt, typeof True; ==> Boolean.
+    - note that typeof null returns object. and that is a recognized bug in JS
+    - note that typeof alert ==> function. But a function is an object
+    - note that typeof is an operator. and in typeof(), the bracket is just any other bracket that combines expressions.
+
+ALL ABOUT STRINGS:
+- declaring string vars:
+    - let mystring = "lmao";
+    - let mystring2 = 'lol'; 
+    - let mystring3 = `${mystring} ${mystring2} ${69+420}`;
+        - can use `` to have a multiline string (where the newline from the enter key is respected) 
+- \ is an escaping character in a string. 
+    - can be used to make multiline string(where the newline from teh enter key is not respected)
+- \n is a newline char.
+- Concatenating string:
+    1. use `` and a var/vars containing a string you want to concatinate
+    2. use +
+        - can concatenate a string an a number. 
+        - note that 1 + 2 + "string" ==> 3string
+        - note that "string" + 1 + 2 ==> string12
+- convert a number to a string using numberVar.toString()
+- convert a string into a number using Number(MyNumContainingString)
+    -Note: the above two functions do not mutate the var. they just return a value of a different type.  
+
+Some String Methods
+- Note that all of the following methods do not mutate the original string since strings are immutable. instead they return a value. 
+- myString.length ==> length of a string
+- extracting substrings:
+    1: myString.slice(start,end); 
+        - if start and end are negative, the position is counted from the end of the string.
+        - if end not included, will slice from start till end (or end to start if value is -ve).
+    2: myString.substring(start,end)
+        -same as slice except it does not take -ve vals
+    3: myString.substr(start,length)
+        - same as slice, except instead of end, we pass teh length of the substring we want.
+        - if start is -ve, we slice from the end of the string
+    the above functions return a substring containing start and upto but not including end.
+- mystirng.replace("oldString", "newString"). 
+    - will return a new string where it replaces the first occurrence of "oldString" in mystring into "newString"
+    - use the /g flag to change all occurrences of "oldString" to "newString" like so /oldString/g
+    - by default it is case sensitive. use regular expression to make it case-insensitive. /oldString/i (note that regular expressions are written without quotes) 
+- mystring.toUpperCase() 
+- mystirng.toLowerCase()
+- mystring.concat(anotherString,SomemoreString,....); concatenates strings mystring,anotherString,SomemoreString etc.
+- mystirng.trim(); removes whitespace from both sides of mystirng
+- mystring.padStart(length,paddingChar) if mystring's length is less than length, will add paddingChar to start of string
+- mystirng.padEnd(length,paddingChar) if mystring's length is less than length, will add paddingChar to start of string
+- extracting string characters
+    1: mystirng.charAt(position) returns a letter at position
+    2: mystirng.charCodeAt(position) returns the utf-16 code of a char at position
+    3: mystring[position] returns a char at position
+        - It makes strings look like arrays (but they are not)
+        - If no character is found, [ ] returns undefined, while charAt() returns an empty string.
+        - It is read only. str[0] = "A" gives no error (but does not work!)
+- mystring.split(separator) returns an array of strings that are separated by separator.
+    - if no separator, then the whole string will be at array[0]
+    - if separator "" (an empty string) then array will be an array of single letters.
+
+
+
+###########
+COMPARISONS
+- Math comparison operators:
+    >, <, >=, <=, ==, !=
+- All comparison operators return a boolean value. true or false
+- like any values, booleans can be assigned to vars
+- can use the above comparison operators for strings too. JS uses the char's unicode for comparison.
+    - thus "a" > "A" since "a" has a greater unicode value than "A"
+- When comparing the values of different data types, JS converts the values to numbers.
+    - "" and " " are converted to 0
+    - strings that are numbers only are converted to their coresponding value but in Number datatype 
+    - strings that contain letters become NaN (a Number still)
+    - the boolean value true is 1
+    - the boolean value false is 0
+- Strict equality:
+    - === and !== work like == and != except it does not convert operands of different types into Number.
+    - so it checks for equality without type conversion. and if the two operands are not of the same type, === returns false
+- Comparison with null and undefined
+    - comparing null or undefined is kinda wierd
+    - null === undefined ==> false (since they are two different datatypes) 
+    - *******null == undefined ==> true. infact null and undefined equal to each other only(with ==)!!!!!!***********
+    - for math and other comparisons <, >, <=, >= null adn undefined are converted to numbers
+        - null converted to 0
+        - undefined converted to NaN
+    - Strange results: null vs 0
+        - null > 0 ==> false  | converts null to 0
+        - null < 0 ==> false  | converts null to 0
+        - null == 0 ==> false | null only equals undefined with ==
+        - null <= 0 ==> true  | converts null to 0
+        - null >= 0 ==> true  | converts null to 0
+        - null != 0 ==> true  | null only equals undefined with ==
+    - Strange results: undefined vs 0
+        - comparing undefined with values otherthan undefined and null will result in false.
+        - similarly undefined != non-null/non-undefined ==> true. 
+    - So be very careful when comparing null and undefined using equality other than === and !==. checking for null/undefined var is a good way to be careful
+
+###########
+if, else if, else
+
+if(condition1){
+    block of code executed if condition1 is true
+} else if(condition2){
+    block of code executed if condition1 is false AND condition2 is true 
+} else {
+    block of code executed if both condition1 and condition2 are false 
+}
+
+- Note that in if statements. (can use Boolean(value) to see if an expression returns true or false): 
+    - 0 is false
+    - "" is false 
+    - null is false
+    - undefined is false
+    - NaN is false
+    - anything else is true
+###########
+Logical Operators 
+- || is or. it returns the first truthy value. if all false, returns last value.
+- && is and. it returns the first falsy value. if all true, returns the last value.
+- ! is not. it converts a value to boolean, then return the oposite of the boolean value.
+    - !!data does the same thing as Boolean(data)
+###########
+switch statements: useful when trying to compare one variable/expression with many values.
+
+
+switch (expression){
+    case valueExpressionCanBe1:
+        run this code
+        break;
+    case valueExpressionCanBe2:
+        run this code instead
+        break;
+    .
+    .
+    .// as many case u want
+    .
+    default:
+        run this code if all the above are not true.
+}
+
+basically saying:
+if(expression == valueExpressionCanBe1){
+    run this code
+} else if (expression == valueExpressionCanBe2){
+    run this code instead
+} ... // as many else if as u want 
+else {
+    run this code if all the above is not true.
+}
+
+except in switch, if there is no break, once a case is true, it will execute its block of code AND the block of code of the cases under it. and if statements
+cant do that.
+###########
+ternary operator (?)
+same as an if-else statement except one line and very limited.
+syntax:
+    (condition) ? run this if condition is true : run this otherwise
+tho it is recommended to use if-else statements since they are easy to understand.
+###########
+
+
+
+
+not related to string but checkout Document.querySelector()!!! shits amazing.
+
