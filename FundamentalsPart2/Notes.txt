@@ -208,4 +208,5 @@ tho it is recommended to use if-else statements since they are easy to understan
 
 
 not related to string but checkout Document.querySelector()!!! shits amazing.
+also look at htmlElement.addEventListener(.....)
 

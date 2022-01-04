@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calender</title>
+
+</head>
+<body>
+    Select Month: 
+    <select>
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+    </select>
+    <h1></h1>
+    <h2></h2>
+    <table></table>
+    <script>
+        let select = document.querySelector("select");
+        function CreateTable(month, numDays){
+            // make the h1 element mont
+            let myH1 = document.querySelector("h1");
+            myH1.innerText = month;
+
+            let myTable = document.querySelector("table");
+            let row = 1;
+            let item;
+            let myrow; 
+            let itemCount = 0;
+            for(i = 1; i <= numDays; i++){
+                if (itemCount == 0 || itemCount == 6){
+
+                    myrow = myTable.appendChild(document.createElement("tr"));
+                    myrow.id=row;
+                    row++;
+                    itemCount = 0;
+                }
+
+                item = myrow.appendChild(document.createElement("td"));
+                item.innerText = i;
+                itemCount ++;
+            }
+        }
+        
+        
+
+        function createCalendar(lol){
+            document.querySelector("h2").innerText = lol; // not part of the question. just messing arround with functions that take in args in eventHandler
+
+            let MyValue = document.querySelector("select").value;
+             
+            console.log(document.querySelector("select").MyValue);
+ 
+            if(MyValue == "January" || MyValue == "March" || MyValue == "May" || MyValue == "July" || MyValue == "August" || MyValue == "October" || MyValue == "December"){                
+                CreateTable(MyValue, 31);
+            }
+        }
+
+        select.addEventListener("change", () => {createCalendar("lol");});
+
+
+    </script>
+
+</body>
+</html>

@@ -43,6 +43,7 @@
         if(!(age >= 14 && age <= 90)){
             console.log("age is NOT in range");
         }
+        /*
         console.log("########################################");
         let input = prompt("Please enter your name");
         console.log(input);
@@ -65,15 +66,24 @@
         } else {
             console.log("canceled");
         }
+        */
+       
 
         
 
     </script>
     <input type="text">
+    <button>lol</button>
     
     <script>
-        let inputValue = document.querySelector("input").value;
-        console.log(inputValue);
+        let input = document.querySelector("input");
+        input.addEventListener("click", console.log(input.value));
+
+        let MyP= document.querySelector("button");
+        function l(){
+            console.log("lol");
+        }
+        MyP.addEventListener("click", l);
     </script>
 </body>
 </html>
