@@ -1,0 +1,53 @@
+Functions
+- anytime you are using a JS structure that uses () and it is not a built-in language structure like for-loop, while/do..while loop, or if..else statements
+- Functions vs Methods:
+    - Methods are just functions that are part of objects.
+- declaration syntax:
+function myFunctionName(argument1, argument2, argumentN){// can have 0 or more number of arguments
+    // function code here.
+}
+- if declaring a function the above way, then that function will always be hoisted (pushed up to the start of the file) thus you can call a function before it is 
+  declared since in actuality, no mater where it is declared, JS puts it at the top.
+
+- calling functions:
+myFunctionName(arguments1, argument2, argumentN); // where the number of arguments must match the number of arguments used when declaring the function 
+- more about function arguments (parameters)
+    - a function can be made without an argument 
+    - arguments are separated with a comma. both when declaring and calling the function
+    - optional-default parameters:
+        - a function can have a parameter that is optional, but it must be initialized to some value so that in the absence of the optional parameter, it defaults to the value initialized
+            syntax:
+                function myFunctionName(name = "Moubin"){
+                    console.log(`Hi ${name}`);
+                }
+        - in the above function, if name is given when the function is called, then it will use the given name. otherwise it will use "Moubin" as the name and output will be "Hi Moubin"
+- functions can be passed into other functions. when you pass a function to another function you omit the bracket and arguments and only pass the name of the function.
+- Anonymous functions and arrow functions
+    - an anonymous function is a function without a name. 
+    - often times u use an anonymous function as an argument for another function that expects a function as an input.
+    - syntax:
+        function (arguments){
+            //body;
+        }
+    - note that an anonymous function does not hoisted.
+    - also note that we say "function expression" instead of "function declaration" for anonymous functions.
+    - similarly, an array function is used to be passed as an argument to another function.
+    - an arrow function is an anonymous function with a different syntax.
+    - syntax:
+        (arguments) => {
+            //body;
+        }
+
+        - if the function only takes one argument u can omit the brackets. 
+        - if the function only has one line of body you can omit the curly braces.
+            so syntax can be:
+                argument => 1LineBody;
+        - if the function needs to return while the above two are true you can do this:
+            const originals = [1, 2, 3];
+            const doubled = originals.map(item => item * 2);
+            console.log(doubled); // [2, 4, 6]
+###
+come back an learn about anon functions. i think the only way u can use functions in events is if they do not have arguments.
+###
+
+        
