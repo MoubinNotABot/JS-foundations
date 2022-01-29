@@ -20,8 +20,26 @@ myFunctionName(arguments1, argument2, argumentN); // where the number of argumen
                 function myFunctionName(name = "Moubin"){
                     console.log(`Hi ${name}`);
                 }
+        - default values can be anything that can be passed into a function. so a default value can also be a function(if u do value = functionName)!
+            - it can also be the value returned from a function if you do value = functionName(params)
+            - you can also assign a default parameter by doing the following instead of doing myParameter = "value" inside the function parenthesis: 
+                if(!myParameter){
+                    myParameter = "value";
+                }
+                or 
+                if (myParameter === undefined){ // this is the best way to check for missing parameter
+                    myParameter = "value";
+                }
+                or 
+                myParameter = myParameter || "value"
+                or 
+                myParameter = myParameter ?? "value" // this is the second best way to check for missing parameter and assign it to a default value.
         - in the above function, if name is given when the function is called, then it will use the given name. otherwise it will use "Moubin" as the name and output will be "Hi Moubin"
+    - In JS, you an pass the wrong number of arguments to a but the function runs anyways. if you want to have a specific number of arguments you can check
+      using the length of "arguments" array thats with all functions.
+        - similarly, you can check if a parameter is undefined. this happens when you get number of arguments that are less than the parameters
 - functions can be passed into other functions. when you pass a function to another function you omit the bracket and arguments and only pass the name of the function.
+    - you can then treat the parameter you expect to be a function as a function (adding brackets and params to it and stuff).
 - Anonymous functions and arrow functions
     - an anonymous function is a function without a name. 
     - often times u use an anonymous function as an argument for another function that expects a function as an input.
@@ -48,6 +66,89 @@ myFunctionName(arguments1, argument2, argumentN); // where the number of argumen
             console.log(doubled); // [2, 4, 6]
 ###
 come back an learn about anon functions. i think the only way u can use functions in events is if they do not have arguments.
+so if you want to call a function that has arguments, you have to call it in a body of a function that does not have arguments like so:
+    myElement.addEventListener("click", () => {myFunction(param1, param2)})
 ###
-
-        
+Function scope and conflicts
+- variables, functions and other things defined in a function can not be accessed outside the function
+- global scope: outside functions. vars here can be accessed by everything in the code.
+    - a function can also change a global variable. tho it is not recommended to use a function to change global vars.
+    - tho a function cannot change an argument. when a function gets an argument, it gets a COPY of that argument we can modify. 
+    - if a function declares a variable using teh same name as a global variable, then the global variable is ignored and the new
+      declaration is used instead
+- conflicts happen when the same variable is (accidentally) used to store two different values (both needed) in two different files
+    - similarly functions can conflict one another. if functions conflict one another inside the same file, the second one is chosen. if functions 
+    in two files conflict one another, the function in the file imported first will be chosen. 
+- Note that even though if(){} and for(){} look kinda similar since they use () and {}, they are not functions. thus they do not have the "function scope" 
+###
+use the "return" keyword to return what you want.
+returning a value will stop the function
+you can return from anywhere in the function
+you can have a return statement without any return value.
+    - when a function does not have a return statement or if it has a return statement without a return value, the function will return undefined.
+never add a newline between the return keyword and the value.
+    - if you really want to have your return value span multipple lines, do this instead:
+        return (
+            my + multiline
+            + return +
+            value
+        )
+###
+argument vs parameter:
+- parameter: the variables listed in the b/n the parentheses in function declaration
+- argument: actual values we put into the function when calling it
+###
+Function Expressions
+- a function can be assigned to a variable.
+    - assigning an anonymous function to a variable(aka function expression):
+        let myVar = function(){
+            body
+        }; // note the ; at  the end. it is not part of the function. rather it is part of let var = value; where here value happened to be an anon function.
+        or:
+        let myVar = ()=>{
+            body
+        }
+    - assigning a non-anonymous function to a variable
+        functoin myFunction(){
+            body
+        } 
+        let myVar = myFunction; // note we do not have the () after the function name. this is because myFunction() is a functoin call where as myFunction is 
+        the pointer to the function itself.
+    - it is important to note that a function is actually a value (a special one, yes) no matter how a it is defined.
+    - note that functoin expressoins are not hoisted. this is because functions in function expressions are made when the program reaches that line of code.
+      but JS processes function declarations before processing anything else.  
+- function expressions allow you to make functions based on conditions where as you cannot declare a function conditoinally and call it outside of the conditoinal statement(or any other codeblock otherthan local code blocks).
+    - this limitation happens in strict mode tho.
+    eg:
+        let myFunction;
+        if (x==y){
+            myFunction = function(){body1}
+        } else {
+            myFunction = function(){body2}
+        }
+        myFunction(); // calling function outside of the conditional works here.
+        but using function declaration calling the function declared conditionally throws an error.
+        if (x==y){
+            function myFunction(){body1}
+        } else {
+            function myFunction() {body2}
+        }
+        myFunction(); // this throws an error.
+###
+callback functions (or just callbacks) are what we call the arguments in a function which we expect to be functions.
+    eg: lets have a function called myFunction with two arguments "confirm" and "decline". if we expect both the argumetns to be functions, we can do the 
+        following in the body of myFunction. here both confirm and decline are called "callback functions"
+        function myFunction(confirm, decline){
+            confirm();
+            decline();
+        }
+        so you would call myFunction like so:
+            myFunction(function1, function2); // where function1 and function2 have already been declared.
+            or, you can delcare an anon function right inside the function's parentheses like so:
+            myFunction(
+                function(){body},
+                function(){body} 
+                );
+             
+###
+look at the HtmlElement.textContent value.

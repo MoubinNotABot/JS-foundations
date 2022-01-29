@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Functions trial</title>
+    <title>TRIAL 3</title>
+    <script src="file1.js"></script>
+    <script src="file2.js"></script>
 </head>
 <body>
     <input id="textBox" type="text"></input>
     <div id="output"></div>
     <script>
+        function p(value){
+            console.log(value);
+        }
         // variable number of arguments
         function add(number){
             let sum = 0;
@@ -20,16 +25,91 @@
             console.log(number);
 
         }
-        add(1,2);
+        function add(number){
+            let sum = 0;
+            for(i = 0; i < arguments.length; i++){
+                sum += arguments[i];
+                console.log(arguments[i]);
+
+            }
+
+            console.log(sum);
+            //console.log(number*100);
+            function nigga (){
+                console.log("nigga");
+            }
+            nigga();
+        }
+        add(5,2);
         let a = (huh) => {
             console.log(huh);
         }
+        
+
         a("man");
 
         const textBox = document.querySelector("#textBox");
         const output = document.querySelector("#output");
 
         textBox.addEventListener('keydown', event => output.textContent = `You pressed "${event.key}".`);
+
+        //const a = 1;
+        //const a = 2;
+        console.log(a);
+        myFunction();
+        trial();
+        console.log("hihihi");
+        function trial(){
+            console.log("loll bozzo mf!");
+        }
+        trial(1,2,3,4,5);
+        add();
+        function myDefaultText(value1 = add(12,12)){
+            console.log("here");
+            // console.log(value1(1,2,3));
+            console.log(value1);
+            console.log("here^")
+        }
+        myDefaultText();
+        function divider(){
+            console.log("####################################");
+        }
+        divider();
+
+        function capitalize(string){
+            let first = string.substring(0,1).toUpperCase();
+            p(first);
+            let rest = string.substring(1).toLowerCase();
+            
+            let result = first + rest;
+            p(result);
+            return result;
+        }
+        function add7(number){
+            p(number+7);
+            return number + 7;
+        }
+        capitalize("AbCdEf");
+
+        function lastLetter(string){
+            let result = string[string.length-1];
+            p(result);
+            return result;
+        }
+        lastLetter("1234");
+        function lastLetter2(string){
+            let result = string.substr(-1,1);
+            p(result); 
+        }
+        lastLetter2("12345");
+        function multiply (num1, num2){
+            let result = num1 * num2;
+            p(result);
+            return result;
+        }
+        multiply(69,420);
+        divider();
+        lastLetter("abcd");
 
     </script>
   
